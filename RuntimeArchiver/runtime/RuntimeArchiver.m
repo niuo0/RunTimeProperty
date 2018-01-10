@@ -64,6 +64,8 @@
             
             id value = [coder decodeObjectForKey:propertyName];
             
+            if (value == nil) continue;
+            
             [self setValue:value forKey:propertyName];
         }
     }
@@ -77,7 +79,7 @@
 
 - (instancetype)init
 {
-    objc_msgSend(self, @selector(archiverPath));
+    //objc_msgSend(self, @selector(archiverPath));
     
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[self archiverPath]]?:[super init];
 }

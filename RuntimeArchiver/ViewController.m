@@ -23,12 +23,12 @@
     
     _config = [SettingConfig new];
     
-    NSLog(@"%@  %ld %@",_config.string, (long)_config.integer, _config.noWrite_ivar);
+    NSLog(@"%@  %ld %d %f",_config.string, (long)_config.integer, _config.ivar, _config.xxx);
     
     _config.string = @"123";
     _config.integer = 456;
-    _config.noWrite_ivar = @"789";
-    
+    _config.ivar = YES;
+    _config.xxx = 123.456789;
 }
 
 

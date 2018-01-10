@@ -7,18 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		075560EE2004CA2D002E8D37 /* RuntimeArchiver+AutoWrite.m in Sources */ = {isa = PBXBuildFile; fileRef = 075560EB2004CA2D002E8D37 /* RuntimeArchiver+AutoWrite.m */; };
+		075560EF2004CA2D002E8D37 /* RuntimeArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 075560ED2004CA2D002E8D37 /* RuntimeArchiver.m */; };
 		07B00BD31F5CF25D0062C335 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B00BD21F5CF25D0062C335 /* main.m */; };
 		07B00BD61F5CF25D0062C335 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B00BD51F5CF25D0062C335 /* AppDelegate.m */; };
 		07B00BD91F5CF25D0062C335 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B00BD81F5CF25D0062C335 /* ViewController.m */; };
 		07B00BDC1F5CF25D0062C335 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07B00BDA1F5CF25D0062C335 /* Main.storyboard */; };
 		07B00BDE1F5CF25D0062C335 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07B00BDD1F5CF25D0062C335 /* Assets.xcassets */; };
 		07B00BE11F5CF25D0062C335 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07B00BDF1F5CF25D0062C335 /* LaunchScreen.storyboard */; };
-		07B00BED1F5CF28A0062C335 /* RuntimeArchiver+AutoWrite.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B00BEA1F5CF28A0062C335 /* RuntimeArchiver+AutoWrite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		07B00BEE1F5CF28A0062C335 /* RuntimeArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B00BEC1F5CF28A0062C335 /* RuntimeArchiver.m */; };
 		07B00BF11F5CF2DA0062C335 /* SettingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B00BF01F5CF2DA0062C335 /* SettingConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		075560EA2004CA2D002E8D37 /* RuntimeArchiver+AutoWrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RuntimeArchiver+AutoWrite.h"; sourceTree = "<group>"; };
+		075560EB2004CA2D002E8D37 /* RuntimeArchiver+AutoWrite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RuntimeArchiver+AutoWrite.m"; sourceTree = "<group>"; };
+		075560EC2004CA2D002E8D37 /* RuntimeArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeArchiver.h; sourceTree = "<group>"; };
+		075560ED2004CA2D002E8D37 /* RuntimeArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeArchiver.m; sourceTree = "<group>"; };
 		07B00BCE1F5CF25D0062C335 /* RuntimeArchiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RuntimeArchiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B00BD21F5CF25D0062C335 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		07B00BD41F5CF25D0062C335 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -29,10 +33,6 @@
 		07B00BDD1F5CF25D0062C335 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07B00BE01F5CF25D0062C335 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07B00BE21F5CF25D0062C335 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07B00BE91F5CF28A0062C335 /* RuntimeArchiver+AutoWrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RuntimeArchiver+AutoWrite.h"; sourceTree = "<group>"; };
-		07B00BEA1F5CF28A0062C335 /* RuntimeArchiver+AutoWrite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RuntimeArchiver+AutoWrite.m"; sourceTree = "<group>"; };
-		07B00BEB1F5CF28A0062C335 /* RuntimeArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeArchiver.h; sourceTree = "<group>"; };
-		07B00BEC1F5CF28A0062C335 /* RuntimeArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeArchiver.m; sourceTree = "<group>"; };
 		07B00BEF1F5CF2DA0062C335 /* SettingConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingConfig.h; sourceTree = "<group>"; };
 		07B00BF01F5CF2DA0062C335 /* SettingConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingConfig.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,6 +48,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		075560E92004CA2D002E8D37 /* runtime */ = {
+			isa = PBXGroup;
+			children = (
+				075560EA2004CA2D002E8D37 /* RuntimeArchiver+AutoWrite.h */,
+				075560EB2004CA2D002E8D37 /* RuntimeArchiver+AutoWrite.m */,
+				075560EC2004CA2D002E8D37 /* RuntimeArchiver.h */,
+				075560ED2004CA2D002E8D37 /* RuntimeArchiver.m */,
+			);
+			path = runtime;
+			sourceTree = "<group>";
+		};
 		07B00BC51F5CF25D0062C335 = {
 			isa = PBXGroup;
 			children = (
@@ -67,7 +78,7 @@
 		07B00BD01F5CF25D0062C335 /* RuntimeArchiver */ = {
 			isa = PBXGroup;
 			children = (
-				07B00BE81F5CF28A0062C335 /* runtime */,
+				075560E92004CA2D002E8D37 /* runtime */,
 				07B00BD41F5CF25D0062C335 /* AppDelegate.h */,
 				07B00BD51F5CF25D0062C335 /* AppDelegate.m */,
 				07B00BEF1F5CF2DA0062C335 /* SettingConfig.h */,
@@ -89,17 +100,6 @@
 				07B00BD21F5CF25D0062C335 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		07B00BE81F5CF28A0062C335 /* runtime */ = {
-			isa = PBXGroup;
-			children = (
-				07B00BE91F5CF28A0062C335 /* RuntimeArchiver+AutoWrite.h */,
-				07B00BEA1F5CF28A0062C335 /* RuntimeArchiver+AutoWrite.m */,
-				07B00BEB1F5CF28A0062C335 /* RuntimeArchiver.h */,
-				07B00BEC1F5CF28A0062C335 /* RuntimeArchiver.m */,
-			);
-			path = runtime;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,11 +174,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075560EF2004CA2D002E8D37 /* RuntimeArchiver.m in Sources */,
 				07B00BD91F5CF25D0062C335 /* ViewController.m in Sources */,
-				07B00BED1F5CF28A0062C335 /* RuntimeArchiver+AutoWrite.m in Sources */,
 				07B00BF11F5CF2DA0062C335 /* SettingConfig.m in Sources */,
+				075560EE2004CA2D002E8D37 /* RuntimeArchiver+AutoWrite.m in Sources */,
 				07B00BD61F5CF25D0062C335 /* AppDelegate.m in Sources */,
-				07B00BEE1F5CF28A0062C335 /* RuntimeArchiver.m in Sources */,
 				07B00BD31F5CF25D0062C335 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

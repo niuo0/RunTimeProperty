@@ -7,12 +7,50 @@
 //
 
 #if __has_feature(objc_arc)
-#error "-fno-objc-arc"
+//#error "-fno-objc-arc"
 #endif
 
 #import "RuntimeArchiver+AutoWrite.h"
 
 @implementation RuntimeArchiver (AutoWrite)
+
+static void new_setterB(id self, SEL _cmd, long long  newValue){
+    
+    NSString * setterName = NSStringFromSelector(_cmd);
+    
+    NSString *getterName = getterForSetter(setterName);
+    
+    NSString * s = @"_";
+    
+    s = [s stringByAppendingString:getterName];
+    
+    ptrdiff_t ageOffset = ivar_getOffset(class_getInstanceVariable([self class], [s cStringUsingEncoding:NSUTF8StringEncoding]));
+    
+    char *agePtr = ((char *)(__bridge void *)self) + ageOffset;
+    memcpy(agePtr, &newValue, sizeof(newValue));
+    
+    [NSKeyedArchiver archiveRootObject:self toFile:[self archiverPath]];
+    
+}
+
+static void new_setterDouble(id self, SEL _cmd, double_t newValue){
+    
+    NSString * setterName = NSStringFromSelector(_cmd);
+    
+    NSString *getterName = getterForSetter(setterName);
+    
+    NSString * s = @"_";
+    
+    s = [s stringByAppendingString:getterName];
+    
+    ptrdiff_t ageOffset = ivar_getOffset(class_getInstanceVariable([self class], [s cStringUsingEncoding:NSUTF8StringEncoding]));
+    
+    char *agePtr = ((char *)(__bridge void *)self) + ageOffset;
+    memcpy(agePtr, &newValue, sizeof(newValue));
+    
+    [NSKeyedArchiver archiveRootObject:self toFile:[self archiverPath]];
+    
+}
 
 
 static void new_setter(id self, SEL _cmd, id newValue)
@@ -27,7 +65,7 @@ static void new_setter(id self, SEL _cmd, id newValue)
     s = [s stringByAppendingString:getterName];
     
     Ivar ivar = class_getInstanceVariable([self class], [s cStringUsingEncoding:NSUTF8StringEncoding]);
- 
+
     object_setIvar(self, ivar, newValue);
     
     [NSKeyedArchiver archiveRootObject:self toFile:[self archiverPath]];
@@ -51,7 +89,7 @@ static NSString * getterForSetter(NSString *setter)
 }
 
 + (void)autoWrite{
-    
+
     unsigned int count = 0;
     
     Method  *a = class_copyMethodList([self class], &count);
@@ -63,14 +101,36 @@ static NSString * getterForSetter(NSString *setter)
         if ([methodName hasPrefix:@"setNoWrite"]) continue;
         
         //获得set方法，更改set
-        if([methodName hasPrefix:@"set"] && [[self propertyOfSelf] containsObject:getterForSetter(methodName)]){
+        NSString * name = getterForSetter(methodName);
+        if([methodName hasPrefix:@"set"] && [[self propertyOfSelf] containsObject:name]){
             
-            method_setImplementation(a[i], (IMP)new_setter);
+            objc_property_t p = class_getProperty([self class], [name UTF8String]);
+            
+            const char * attrString = property_getAttributes(p);
+            const char *typeString = attrString + 1;
+//            const char *next = NSGetSizeAndAlignment(typeString, NULL, NULL);
+//            size_t typeLength = next - typeString;
+            
+            if (typeString[0] == *(@encode(id)) && typeString[1] == '"'){
+                
+                method_setImplementation(a[i], (IMP)new_setter);
+                
+            }else if (typeString[0] == *(@encode(float_t)) || typeString[0] == *(@encode(double_t))){
+                
+                method_setImplementation(a[i], (IMP)new_setterDouble);
+                
+            }else{
+                
+                method_setImplementation(a[i], (IMP)new_setterB);
+                
+            }
+            
         }
     }
     
     free(a);
 }
+
 
 + (void)initialize
 {

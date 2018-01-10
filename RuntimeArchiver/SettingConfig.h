@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSString * string;
 @property (nonatomic, assign) NSInteger integer;
-@property (nonatomic, strong) NSString * noWrite_ivar;
+@property (nonatomic, assign) BOOL ivar;
+@property (nonatomic, assign) CGFloat xxx;
 
 @end
