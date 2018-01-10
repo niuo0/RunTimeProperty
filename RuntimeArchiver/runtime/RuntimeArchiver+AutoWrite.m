@@ -14,7 +14,7 @@
 
 @implementation RuntimeArchiver (AutoWrite)
 
-static void new_setterB(id self, SEL _cmd, long long  newValue){
+static void new_setterB(id self, SEL _cmd, long long newValue){
     
     NSString * setterName = NSStringFromSelector(_cmd);
     
@@ -24,10 +24,38 @@ static void new_setterB(id self, SEL _cmd, long long  newValue){
     
     s = [s stringByAppendingString:getterName];
     
+    objc_property_t p = class_getProperty([self class], [getterName UTF8String]);
+    
+    const char * attrString = property_getAttributes(p);
+    const char *typeString = attrString + 1;
+    
+    
+    //参考
+    //https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
+    
+    size_t length;
+    if (typeString[0] == *(@encode(BOOL)) || typeString[0] == *(@encode(bool))){
+        length = sizeof(BOOL);
+    }else if (typeString[0] == *(@encode(char)) || typeString[0] == *(@encode(unsigned char))){
+        length = sizeof(char);
+    }else if (typeString[0] == *(@encode(int)) || typeString[0] == *(@encode(unsigned int))){
+        length = sizeof(int);
+    }else if (typeString[0] == *(@encode(short)) || typeString[0] == *(@encode(unsigned short))){
+        length = sizeof(short);
+    }else if (typeString[0] == *(@encode(long)) || typeString[0] == *(@encode(unsigned long))){
+        length = sizeof(long);
+    }else if (typeString[0] == *(@encode(long long)) || typeString[0] == *(@encode(unsigned long long))){
+        length = sizeof(long long);
+    }else{
+        length = 0;
+        NSAssert(NO, @"unknow encode !!!!");
+        return;
+    }
+    
     ptrdiff_t ageOffset = ivar_getOffset(class_getInstanceVariable([self class], [s cStringUsingEncoding:NSUTF8StringEncoding]));
     
     char *agePtr = ((char *)(__bridge void *)self) + ageOffset;
-    memcpy(agePtr, &newValue, sizeof(newValue));
+    memcpy(agePtr, &newValue, length);
     
     [NSKeyedArchiver archiveRootObject:self toFile:[self archiverPath]];
     
@@ -43,10 +71,26 @@ static void new_setterDouble(id self, SEL _cmd, double_t newValue){
     
     s = [s stringByAppendingString:getterName];
     
+    objc_property_t p = class_getProperty([self class], [getterName UTF8String]);
+    
+    const char * attrString = property_getAttributes(p);
+    const char *typeString = attrString + 1;
+    size_t length;
+    if (typeString[0] == *(@encode(float))){
+        length = sizeof(float);
+    }else if (typeString[0] == *(@encode(double))){
+        length = sizeof(double);
+    }else{
+        length = 0;
+        NSAssert(NO, @"unknow encode !!!!");
+        return;
+    }
+    
+    
     ptrdiff_t ageOffset = ivar_getOffset(class_getInstanceVariable([self class], [s cStringUsingEncoding:NSUTF8StringEncoding]));
     
     char *agePtr = ((char *)(__bridge void *)self) + ageOffset;
-    memcpy(agePtr, &newValue, sizeof(newValue));
+    memcpy(agePtr, &newValue, length);
     
     [NSKeyedArchiver archiveRootObject:self toFile:[self archiverPath]];
     

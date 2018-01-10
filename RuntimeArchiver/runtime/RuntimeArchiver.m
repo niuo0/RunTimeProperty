@@ -8,6 +8,10 @@
 
 #import "RuntimeArchiver.h"
 
+@interface RuntimeArchiver ()
+
+@end
+
 @implementation RuntimeArchiver
 
 // 返回self的所有对象名称
@@ -37,6 +41,7 @@
     return [properNames copy];
 }
 
+
 // 归档
 - (void)encodeWithCoder:(NSCoder *)enCoder
 {
@@ -44,6 +49,8 @@
     NSArray *properNames = [[self class] propertyOfSelf];
     
     for (NSString *propertyName in properNames) {
+        
+        if ([propertyName hasPrefix:@"noWrite"]) continue;
         
         id obj = [self valueForKey:propertyName];
         
@@ -61,6 +68,8 @@
         NSArray *properNames = [[self class] propertyOfSelf];
         
         for (NSString *propertyName in properNames) {
+            
+            if ([propertyName hasPrefix:@"noWrite"]) continue;
             
             id value = [coder decodeObjectForKey:propertyName];
             
